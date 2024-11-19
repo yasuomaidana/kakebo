@@ -1,0 +1,28 @@
+import {Button} from "std-widgets.slint";
+
+
+export component ClearButton inherits Rectangle {
+
+//    callback clear-value();
+
+    border-radius: root.height / 5;
+    border-width: 2px;
+    border-color: root.background.darker(25%);
+    background: touch.pressed ? #6b8282 : touch.has-hover ? #6c616c : #456;
+    height: txt.preferred-height * 1.33;
+    min-width: txt.preferred-width + 20px;
+
+    callback clear-value();
+
+    touch := TouchArea {
+        clicked => {
+         root.clear-value();
+        }
+    }
+
+    txt := Text {
+        text: "Clear";
+        color: #fff;
+        font-size: 14px;
+    }
+}

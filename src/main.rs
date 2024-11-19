@@ -17,6 +17,14 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
     });
 
+    ui.on_clear_value({
+        let ui_handle = ui.as_weak();
+        move || {
+            let ui = ui_handle.unwrap();
+            ui.set_counter(0);
+        }
+    });
+
     ui.run()?;
 
     Ok(())
