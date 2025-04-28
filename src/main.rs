@@ -1,31 +1,23 @@
-// Prevent console window in addition to Slint window in Windows release builds when, e.g.,
-// starting the app via file manager. Ignored on other platforms.
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+use crate::app_state::AppState;
 
-use std::error::Error;
+mod app_state;
+mod message;
+mod screen;
 
-slint::include_modules!();
+fn main() -> iced::Result {
+    // iced::application(AppState::default,
+    //                   AppState::update,
+    //                   AppState::view,
+    // )
+    #[cfg(target_arch = "wasm32")]
+    {
+        console_log::init().expect("Initialize logger");
+        std::panic::set_hook(Box::new(console_error_panic_hook::hook));
+    }
+    #[cfg(not(target_arch = "wasm32"))]
+    tracing_subscriber::fmt::init();
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let ui = AppWindow::new()?;
-
-    ui.on_request_increase_value({
-        let ui_handle = ui.as_weak();
-        move || {
-            let ui = ui_handle.unwrap();
-            ui.set_counter(ui.get_counter() + 1);
-        }
-    });
-
-    ui.on_clear_value({
-        let ui_handle = ui.as_weak();
-        move || {
-            let ui = ui_handle.unwrap();
-            ui.set_counter(0);
-        }
-    });
-
-    ui.run()?;
-
-    Ok(())
+    iced::application(AppState::title, AppState::update, AppState::view)
+        .centered()
+        .run()
 }
