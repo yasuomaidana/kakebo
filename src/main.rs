@@ -1,3 +1,5 @@
+use iced::overlay::menu::State;
+use iced::Theme;
 use crate::app_state::AppState;
 
 mod app_state;
@@ -18,6 +20,7 @@ fn main() -> iced::Result {
     tracing_subscriber::fmt::init();
 
     iced::application(AppState::title, AppState::update, AppState::view)
+        .theme(AppState::theme)
         .centered()
         .run()
 }

@@ -1,7 +1,7 @@
 use crate::message::Message;
 use crate::screen::Screen;
 use iced::widget::{button, column, container, row};
-use iced::{Element, Fill};
+use iced::{Element, Fill, Theme};
 
 #[derive(Default)]
 pub struct AppState {
@@ -54,6 +54,14 @@ impl AppState {
                 let content = column![back_button];
                 Element::new(content)
             }
+        }
+    }
+
+    pub(crate) fn theme(&self) -> Theme {
+        match self.screen {
+            Screen::Home => Theme::default(),
+            Screen::Register => Theme::Dark,
+            Screen::MonthlySummary => Theme::Dark,
         }
     }
 }
