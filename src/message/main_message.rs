@@ -1,5 +1,5 @@
 #[derive(Debug, Clone)]
-pub enum Message {
+pub enum MainMessage {
     GoToHome,
     GoToRegister,
     GoToMonthlySummary,

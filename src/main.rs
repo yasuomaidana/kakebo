@@ -1,14 +1,10 @@
-use crate::app_state::AppState;
+use state::app_state::AppState;
 
-mod app_state;
 mod message;
-mod screen;
+mod state;
+mod widget;
 
 fn main() -> iced::Result {
-    // iced::application(AppState::default,
-    //                   AppState::update,
-    //                   AppState::view,
-    // )
     #[cfg(target_arch = "wasm32")]
     {
         console_log::init().expect("Initialize logger");

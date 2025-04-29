@@ -1,5 +1,5 @@
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Screen {
+pub enum MainScreen {
     Home,
     Register,
     MonthlySummary,
