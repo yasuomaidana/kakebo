@@ -1,7 +1,7 @@
 use crate::message::Message;
 use crate::screen::Screen;
-use iced::Element;
-use iced::widget::{button, column, row};
+use iced::widget::{button, column, container, row};
+use iced::{Element, Fill};
 
 #[derive(Default)]
 pub struct AppState {
@@ -40,8 +40,13 @@ impl AppState {
                 let register_button = button("Register").on_press(Message::GoToRegister);
                 let monthly_summary_button =
                     button("Monthly Summary").on_press(Message::GoToMonthlySummary);
-                let home_row = row![register_button, monthly_summary_button];
-                Element::new(home_row)
+                let home_row = row![register_button, monthly_summary_button].spacing(20);
+
+                container(home_row)
+                    .center_x(Fill)
+                    .center_y(Fill)
+                    .padding(20)
+                    .into()
             }
             _ => {
                 // Create the other screen views
