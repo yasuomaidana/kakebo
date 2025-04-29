@@ -1,5 +1,3 @@
-use iced::overlay::menu::State;
-use iced::Theme;
 use crate::app_state::AppState;
 
 mod app_state;
