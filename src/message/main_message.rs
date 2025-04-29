@@ -1,6 +1,13 @@
 #[derive(Debug, Clone)]
 pub enum MainMessage {
     GoToHome,
-    GoToRegister,
     GoToMonthlySummary,
+    RegisterMessage(RegisterMessage),
+    GoToRegister,
+}
+
+#[derive(Debug, Clone)]
+pub enum RegisterMessage {
+    Increment,
+    Decrement,
 }
