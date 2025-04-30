@@ -1,4 +1,4 @@
-use state::app_state::AppState;
+use state::app_state::State;
 
 mod message;
 mod state;
@@ -13,8 +13,8 @@ fn main() -> iced::Result {
     #[cfg(not(target_arch = "wasm32"))]
     tracing_subscriber::fmt::init();
 
-    iced::application(AppState::title, AppState::update, AppState::view)
-        .theme(AppState::theme)
+    iced::application(State::title, State::update, State::view)
+        .theme(State::theme)
         .centered()
         .run()
 }
