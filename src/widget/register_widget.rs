@@ -11,11 +11,14 @@ pub fn register_widget(state: &RegisterState) -> Element<Message> {
         text(format!("Count: {}", state.count)),
         button("-").on_press(Message::RegisterMessage(RegisterMessage::Decrement)),
     ]
+    .align_y(iced::alignment::Vertical::Center)
     .spacing(10)
     .padding(10);
-    let content = container(column![count_controller, back_button])
-        .center_x(Fill)
-        .center_y(Fill)
-        .padding(20);
+    let content = container(
+        column![count_controller, back_button].align_x(iced::alignment::Horizontal::Center),
+    )
+    .center_x(Fill)
+    .center_y(Fill)
+    .padding(20);
     Element::new(content)
 }
